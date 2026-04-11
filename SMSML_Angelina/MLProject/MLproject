@@ -1,0 +1,13 @@
+name: Wine_Classification_CI_Angelina
+
+python_env: conda.yaml
+
+entry_points:
+  main:
+    command: "python modelling.py"
+    
+  train:
+    parameters:
+      experiment_name: {type: str, default: "Wine_Classification_CI_Angelina"}
+      model_type: {type: str, default: "RandomForest"}
+    command: "python modelling.py"

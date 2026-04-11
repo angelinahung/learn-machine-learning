@@ -1,0 +1,83 @@
+# Prometheus Configuration for ML Model Monitoring
+# This configuration file defines how Prometheus scrapes metrics from the ML model
+
+global:
+  # How frequently to scrape targets by default
+  scrape_interval: 15s
+  
+  # How long until a scrape request times out
+  scrape_timeout: 10s
+  
+  # How frequently to evaluate rules
+  evaluation_interval: 15s
+
+# Alertmanager configuration (optional)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config
+  
+  # Prometheus server self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 15s
+    metrics_path: '/metrics'
+    
+  # ML Model Prometheus Exporter
+  - job_name: 'ml-model-exporter'
+    static_configs:
+      - targets: ['localhost:8000']
+    scrape_interval: 5s  # More frequent scraping for ML metrics
+    scrape_timeout: 5s
+    metrics_path: '/metrics'
+    honor_labels: true
+    
+  # MLflow Model Serving (if using MLflow serve)
+  - job_name: 'mlflow-model-server'
+    static_configs:
+      - targets: ['localhost:1234']  # Default MLflow serve port
+    scrape_interval: 10s
+    scrape_timeout: 8s
+    metrics_path: '/metrics'
+    honor_labels: true
+    # Health check
+    honor_timestamps: true
+    
+  # Flask/Python application metrics (if using prometheus_flask_exporter)
+  - job_name: 'flask-app-metrics'
+    static_configs:
+      - targets: ['localhost:5000']
+    scrape_interval: 10s
+    metrics_path: '/metrics'
+    honor_labels: true
+
+# Additional monitoring targets (optional)
+  # Node Exporter (system metrics)
+  # - job_name: 'node-exporter'
+  #   static_configs:
+  #     - targets: ['localhost:9100']
+  #   scrape_interval: 15s
+  
+  # Docker containers (if using Docker)
+  # - job_name: 'docker-containers'
+  #   static_configs:
+  #     - targets: ['localhost:8080']
+
+# Remote write configuration (for sending metrics to external systems)
+# remote_write:
+#   - url: "http://remote-storage-url/api/v1/write"
+
+# Remote read configuration (for reading from external systems)  
+# remote_read:
+#   - url: "http://remote-storage-url/api/v1/read"
