@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1776166274889
+current_stage: None
+description: null
+last_updated_timestamp: 1776166274889
+name: Seeds_RandomForest_Demo_Angelina
+run_id: 9fb16b8530cd4240b7b9d98b2a2389da
+run_link: null
+source: file:///D:/projects/machine-learning/SMSML_Angelina/Membangun_model/mlruns/891046984558785786/9fb16b8530cd4240b7b9d98b2a2389da/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///D:/projects/machine-learning/SMSML_Angelina/Membangun_model/mlruns/891046984558785786/9fb16b8530cd4240b7b9d98b2a2389da/artifacts/model
+user_id: null
+version: 6

@@ -53,7 +53,7 @@ def setup_mlflow_skilled():
     mlflow.set_tracking_uri("file:./mlruns")
     
     # Set experiment name
-    experiment_name = "Wine_Classification_Skilled_Angelina"
+    experiment_name = "Seeds_Classification_Skilled_Angelina"
     try:
         experiment_id = mlflow.create_experiment(experiment_name)
         print(f"Created new experiment: {experiment_name}")
@@ -66,9 +66,9 @@ def setup_mlflow_skilled():
     # DISABLE autolog for skilled level - use manual logging
     mlflow.sklearn.autolog(disable=True)
     
-    print(f"✅ MLflow tracking URI: {mlflow.get_tracking_uri()}")
-    print(f"✅ Experiment: {experiment_name}")  
-    print(f"✅ AutoLog DISABLED - Using MANUAL LOGGING (SKILLED REQUIREMENT)")
+    print(f"MLflow tracking URI: {mlflow.get_tracking_uri()}")
+    print(f"Experiment: {experiment_name}")  
+    print(f"AutoLog DISABLED - Using MANUAL LOGGING (SKILLED REQUIREMENT)")
 
 def create_confusion_matrix_plot(y_true, y_pred, target_names):
     """
@@ -171,8 +171,8 @@ def train_random_forest_tuned(X_train, X_test, y_train, y_test, dataset_info):
         mlflow.log_metric("best_cv_score", grid_search.best_score_)
         mlflow.log_metric("cv_std", grid_search.cv_results_['std_test_score'][grid_search.best_index_])
         
-        print(f"✅ Best parameters: {grid_search.best_params_}")
-        print(f"✅ Best CV score: {grid_search.best_score_:.4f}")
+        print(f"Best parameters: {grid_search.best_params_}")
+        print(f"Best CV score: {grid_search.best_score_:.4f}")
         
         # Manual logging of all metrics (SKILLED REQUIREMENT)
         test_accuracy = manual_log_sklearn_metrics(
@@ -180,8 +180,8 @@ def train_random_forest_tuned(X_train, X_test, y_train, y_test, dataset_info):
             dataset_info['target_names']
         )
         
-        print(f"✅ Test Accuracy: {test_accuracy:.4f}")
-        print("✅ Model tuned and logged with MANUAL LOGGING")
+        print(f"Test Accuracy: {test_accuracy:.4f}")
+        print("Model tuned and logged with MANUAL LOGGING")
         
         return best_rf_model
 
@@ -225,8 +225,8 @@ def train_logistic_regression_tuned(X_train, X_test, y_train, y_test, dataset_in
         mlflow.log_metric("best_cv_score", grid_search.best_score_)
         mlflow.log_metric("cv_std", grid_search.cv_results_['std_test_score'][grid_search.best_index_])
         
-        print(f"✅ Best parameters: {grid_search.best_params_}")
-        print(f"✅ Best CV score: {grid_search.best_score_:.4f}")
+        print(f"Best parameters: {grid_search.best_params_}")
+        print(f"Best CV score: {grid_search.best_score_:.4f}")
         
         # Manual logging of all metrics (SKILLED REQUIREMENT)
         test_accuracy = manual_log_sklearn_metrics(
@@ -234,8 +234,8 @@ def train_logistic_regression_tuned(X_train, X_test, y_train, y_test, dataset_in
             dataset_info['target_names']
         )
         
-        print(f"✅ Test Accuracy: {test_accuracy:.4f}")
-        print("✅ Model tuned and logged with MANUAL LOGGING")
+        print(f"Test Accuracy: {test_accuracy:.4f}")
+        print("Model tuned and logged with MANUAL LOGGING")
         
         return best_lr_model
 
@@ -244,20 +244,20 @@ def main():
     Main function for SKILLED level implementation
     
     KRITERIA 2 - SKILLED (3 pts) Implementation:
-    ✅ Train ML models using MLflow Tracking UI locally  
-    ✅ WITH hyperparameter tuning
-    ✅ Use MANUAL logging (not autolog) with same metrics as autolog
-    ✅ Save optimized models and tuning results
+    Train ML models using MLflow Tracking UI locally  
+    WITH hyperparameter tuning
+    Use MANUAL logging (not autolog) with same metrics as autolog
+    Save optimized models and tuning results
     """
     print("="*70)
     print("KRITERIA 2 - SKILLED LEVEL: HYPERPARAMETER TUNING WITH MLFLOW")
     print("="*70)
     print("🎯 Implementing SKILLED level requirements:")
-    print("   ✅ Scikit-Learn models with MLflow")
-    print("   ✅ Local MLflow tracking")
-    print("   ✅ MANUAL logging (autolog disabled)")
-    print("   ✅ Hyperparameter tuning with GridSearchCV")
-    print("   ✅ Optimized models with tuning results")
+    print("   Scikit-Learn models with MLflow")
+    print("   Local MLflow tracking")
+    print("   MANUAL logging (autolog disabled)")
+    print("   Hyperparameter tuning with GridSearchCV")
+    print("   Optimized models with tuning results")
     print("✨ Author: Angelina")
     print("="*70)
     
@@ -269,7 +269,7 @@ def main():
         setup_mlflow_skilled()
         
         # Train models with hyperparameter tuning
-        print(f"\n🚀 Training {dataset_info['n_classes']} wine classes with tuning...")
+        print(f"\n🚀 Training {dataset_info['n_classes']} seeds classes with tuning...")
         
         # Train Random Forest with tuning
         rf_model = train_random_forest_tuned(X_train, X_test, y_train, y_test, dataset_info)
@@ -280,10 +280,10 @@ def main():
         print("\n" + "="*70)
         print("🎉 SKILLED LEVEL TRAINING COMPLETE!")
         print("="*70)
-        print("✅ Models tuned and logged with MANUAL LOGGING")
-        print("✅ Hyperparameter optimization completed")
-        print("✅ Best models saved in MLflow tracking")
-        print("✅ Additional artifacts logged (confusion matrix, reports)")
+        print("Models tuned and logged with MANUAL LOGGING")
+        print("Hyperparameter optimization completed")
+        print("Best models saved in MLflow tracking")
+        print("Additional artifacts logged (confusion matrix, reports)")
         
         print(f"\n📊 To view MLflow Dashboard:")
         print("1. Open terminal in project directory:")
@@ -295,7 +295,7 @@ def main():
         print("4. Compare tuned vs basic models")
         
         print(f"\n📝 Scoring Requirements Met:")
-        print("   ✅ SKILLED (3 pts): All requirements satisfied")
+        print("   SKILLED (3 pts): All requirements satisfied")
         print("   📁 Files in structure: modelling_tuning.py ✓")
         print("   🔧 Hyperparameter tuning: ✓")  
         print("   📊 Manual logging: ✓")

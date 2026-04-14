@@ -1,4 +1,4 @@
-name: wine_classification_ci
+name: seeds_classification_ci
 channels:
   - conda-forge
   - defaults

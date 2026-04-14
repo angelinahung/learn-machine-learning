@@ -1,8 +1,8 @@
-# MLProject - Wine Classification CI/CD Pipeline
+# MLProject - Seeds Classification CI/CD Pipeline
 
 ## KRITERIA 3
 
-This MLproject implements an automated CI/CD pipeline for wine classification using MLflow Projects and GitHub Actions.
+This MLproject implements an automated CI/CD pipeline for seeds classification using MLflow Projects and GitHub Actions.
 
 ## Project Structure
 
@@ -11,7 +11,7 @@ MLProject/
 ├── modelling.py                    # Main training script (CI-optimized)
 ├── conda.yaml                     # Environment specification
 ├── MLproject                      # MLflow project configuration  
-├── dataset_preprocessing/         # Preprocessed wine dataset
+├── dataset_preprocessing/         # Preprocessed seeds dataset
 │   ├── X_train.csv               # Training features
 │   ├── X_test.csv                # Test features  
 │   ├── y_train.csv               # Training labels
@@ -63,10 +63,10 @@ mlflow run https://github.com/username/repo#MLProject --version main
 ## Model Performance
 
 - **Model:** Random Forest Classifier
-- **Dataset:** Wine Quality (3 classes)
-- **Features:** 13 wine characteristics  
+- **Dataset:** Seeds Classification (3 classes: Kama, Rosa, Canadian)
+- **Features:** 7 grain characteristics  
 - **Expected Accuracy:** ~100% (perfect classification on preprocessed data)
-- **Experiment:** Wine_Classification_CI_Angelina
+- **Experiment:** Seeds_Classification_CI_Angelina
 
 ## Usage Instructions
 
@@ -77,7 +77,7 @@ cd MLProject
 
 # Install environment
 conda env create -f conda.yaml
-conda activate wine_classification_ci
+conda activate seeds_classification_ci
 
 # Run training
 python modelling.py

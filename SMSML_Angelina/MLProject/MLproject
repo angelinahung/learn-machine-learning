@@ -1,4 +1,4 @@
-name: Wine_Classification_CI_Angelina
+name: Seeds_Classification_CI_Angelina
 
 python_env: conda.yaml
 
@@ -8,6 +8,6 @@ entry_points:
     
   train:
     parameters:
-      experiment_name: {type: str, default: "Wine_Classification_CI_Angelina"}
+      experiment_name: {type: str, default: "Seeds_Classification_CI_Angelina"}
       model_type: {type: str, default: "RandomForest"}
     command: "python modelling.py"

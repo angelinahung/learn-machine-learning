@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/projects/machine-learning/SMSML_Angelina/Membangun_model/mlruns/0/e53ef0b572ce4e348b5eb36e6222b8fe/artifacts
+end_time: 1776165696477
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e53ef0b572ce4e348b5eb36e6222b8fe
+run_name: angry-horse-329
+run_uuid: e53ef0b572ce4e348b5eb36e6222b8fe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776165696372
+status: 3
+tags: []
+user_id: User

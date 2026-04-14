@@ -6,7 +6,7 @@ on:
     branches: [ main, master ]
     paths:
       - 'preprocessing/**'
-      - 'wine_dataset_raw/**'
+      - 'seeds_dataset_raw/**'
       - '.github/workflows/**'
   pull_request:
     branches: [ main, master ]
@@ -53,8 +53,8 @@ jobs:
     # Step 5: Create necessary directories  
     - name: Setup Directory Structure
       run: |
-        mkdir -p preprocessing/wine_dataset_preprocessing
-        mkdir -p wine_dataset_raw
+        mkdir -p preprocessing/seeds_dataset_preprocessing
+        mkdir -p seeds_dataset_raw
         echo "Directory structure created successfully"
         
     # Step 6: Run automated preprocessing
@@ -73,8 +73,8 @@ import pandas as pd
 import os
 
 # Check if all required files exist
-files = ['X_train.csv', 'X_test.csv', 'y_train.csv', 'y_test.csv', 'wine_processed_complete.csv']
-base_dir = 'wine_dataset_preprocessing'
+files = ['X_train.csv', 'X_test.csv', 'y_train.csv', 'y_test.csv', 'seeds_processed_complete.csv']
+base_dir = 'seeds_dataset_preprocessing'
 
 for file in files:
     filepath = os.path.join(base_dir, file)
@@ -92,10 +92,10 @@ print('All processed datasets verified successfully!')
     - name: Archive Processed Datasets
       uses: actions/upload-artifact@v3
       with:
-        name: processed-wine-dataset-${{ github.sha }}
+        name: processed-seeds-dataset-${{ github.sha }}
         path: |
-          preprocessing/wine_dataset_preprocessing/*.csv
-          preprocessing/wine_dataset_preprocessing/*.joblib
+          preprocessing/seeds_dataset_preprocessing/*.csv
+          preprocessing/seeds_dataset_preprocessing/*.joblib
         retention-days: 30
         
     # Step 9: Generate preprocessing report
@@ -115,7 +115,7 @@ report.append(f'Commit: ${{ github.sha }}')
 report.append('')
 
 # Check processed data
-base_dir = 'wine_dataset_preprocessing'
+base_dir = 'seeds_dataset_preprocessing'
 if os.path.exists(base_dir):
     files = os.listdir(base_dir)
     report.append('## Processed Files')
@@ -167,6 +167,6 @@ print('Preprocessing report generated successfully!')
         echo "- Artifacts archived for download"
         echo ""
         echo "Generated Files:"
-        ls -la preprocessing/wine_dataset_preprocessing/ || echo "Directory not found"
+        ls -la preprocessing/seeds_dataset_preprocessing/ || echo "Directory not found"
         echo ""
         echo "🔗 Download processed datasets from the Artifacts section of this workflow run."

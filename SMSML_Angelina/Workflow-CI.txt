@@ -50,16 +50,16 @@ jobs:
         python -c "
         import pandas as pd
         import numpy as np
-        from sklearn.datasets import load_wine
+        from sklearn.datasets import load_iris
         from sklearn.model_selection import train_test_split
         from sklearn.preprocessing import StandardScaler
         import os
         import json
         
-        # Load and process wine dataset
-        wine = load_wine()
-        data = pd.DataFrame(wine.data, columns=wine.feature_names)
-        data['target'] = wine.target
+        # Load and process seeds dataset
+        seeds = load_iris()
+        data = pd.DataFrame(seeds.data, columns=seeds.feature_names)
+        data['target'] = seeds.target
         
         # Simple preprocessing
         X = data.drop('target', axis=1)
@@ -84,10 +84,10 @@ jobs:
         # Save dataset info
         feature_info = {
             'feature_names': list(X_scaled.columns),
-            'target_names': list(wine.target_names),
+            'target_names': list(seeds.target_names),
             'n_features': len(X_scaled.columns),
             'n_samples': len(X_scaled),
-            'n_classes': len(wine.target_names)
+            'n_classes': len(seeds.target_names)
         }
         
         with open('dataset_preprocessing/dataset_info.json', 'w') as f:

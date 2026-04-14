@@ -1,0 +1,25 @@
+Seeds Dataset Information
+========================
+
+Total samples: 210
+Total features: 7
+Total classes: 3
+
+Feature Names:
+ 1. area
+ 2. perimeter
+ 3. compactness
+ 4. length_of_kernel
+ 5. width_of_kernel
+ 6. asymmetry_coefficient
+ 7. length_of_kernel_groove
+
+Class Names:
+Class 0: Kama
+Class 1: Rosa
+Class 2: Canadian
+
+Class Distribution:
+Class 0: 70 samples
+Class 1: 70 samples
+Class 2: 70 samples

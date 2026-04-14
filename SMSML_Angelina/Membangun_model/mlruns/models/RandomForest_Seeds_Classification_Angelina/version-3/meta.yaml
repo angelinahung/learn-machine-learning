@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1776134478055
+current_stage: None
+description: null
+last_updated_timestamp: 1776134478055
+name: RandomForest_Seeds_Classification_Angelina
+run_id: 0ebec9c92e754711b7ad6cd6ddfc5b8a
+run_link: null
+source: file:///D:/projects/machine-learning/SMSML_Angelina/Membangun_model/mlruns/196428542522504306/0ebec9c92e754711b7ad6cd6ddfc5b8a/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///D:/projects/machine-learning/SMSML_Angelina/Membangun_model/mlruns/196428542522504306/0ebec9c92e754711b7ad6cd6ddfc5b8a/artifacts/model
+user_id: null
+version: 3

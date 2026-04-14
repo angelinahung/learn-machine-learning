@@ -1,25 +1,23 @@
 {
-  "feature_names": [
-    "alcohol",
-    "malic_acid",
-    "ash",
-    "alcalinity_of_ash",
-    "magnesium",
-    "total_phenols",
-    "flavanoids",
-    "nonflavanoid_phenols",
-    "proanthocyanins",
-    "color_intensity",
-    "hue",
-    "od280/od315_of_diluted_wines",
-    "proline"
-  ],
+  "n_classes": 3,
+  "n_features": 7,
+  "n_train_samples": 168,
+  "n_test_samples": 42,
   "target_names": [
-    "class_0",
-    "class_1", 
-    "class_2"
+    "Kama",
+    "Rosa",
+    "Canadian"
   ],
-  "n_features": 13,
-  "n_samples": 178,
-  "n_classes": 3
+  "feature_names": [
+    "area",
+    "perimeter",
+    "compactness",
+    "length_of_kernel",
+    "width_of_kernel",
+    "asymmetry_coefficient",
+    "length_of_kernel_groove"
+  ],
+  "dataset_name": "Seeds",
+  "random_state": 42,
+  "test_size": 0.2
 }

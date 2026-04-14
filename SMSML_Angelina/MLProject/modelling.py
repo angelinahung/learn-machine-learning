@@ -35,7 +35,7 @@ def setup_mlflow():
     print("Setting up MLflow...")
     mlflow.set_tracking_uri("file:./mlruns")
     
-    experiment_name = "Wine_Classification_CI_Angelina"
+    experiment_name = "Seeds_Classification_CI_Angelina"
     try:
         experiment_id = mlflow.create_experiment(experiment_name)
         print(f"Created experiment: {experiment_name}")
@@ -89,7 +89,7 @@ def train_random_forest(X_train, X_test, y_train, y_test):
         mlflow.sklearn.log_model(
             sk_model=model,
             artifact_path="model",
-            registered_model_name="RandomForest_Wine_CI_Angelina"
+            registered_model_name="RandomForest_Seeds_CI_Angelina"
         )
         
         # Log classification report as artifact
@@ -125,7 +125,7 @@ def main():
         setup_mlflow()
         
         # Train model
-        print(f"\nTraining wine classification for {dataset_info['n_classes']} classes...")
+        print(f"\nTraining seeds classification for {dataset_info['n_classes']} classes...")
         
         rf_model, rf_accuracy = train_random_forest(X_train, X_test, y_train, y_test)
         
@@ -136,7 +136,7 @@ def main():
         print("Results Summary:")
         print(f"  Random Forest Test Accuracy: {rf_accuracy:.4f}")
         print(f"  Model saved in MLflow with artifacts")
-        print(f"  Experiment: Wine_Classification_CI_Angelina")
+        print(f"  Experiment: Seeds_Classification_CI_Angelina")
         
         print(f"\nKRITERIA 3 - BASIC (2 pts) Requirements Met:")
         print("   MLProject folder created")

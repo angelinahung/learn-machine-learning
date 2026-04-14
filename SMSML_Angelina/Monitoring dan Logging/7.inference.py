@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 from prometheus_exporter import MLModelMetrics
 import logging
-from sklearn.datasets import load_wine
+import urllib.request
 import random
 from datetime import datetime
 
@@ -51,7 +51,7 @@ class ModelInferenceClient:
     
     def generate_sample_data(self, n_samples=1):
         """
-        Generate sample wine data for prediction
+        Generate sample seeds data for prediction
         
         Args:
             n_samples: Number of samples to generate
@@ -59,19 +59,29 @@ class ModelInferenceClient:
         Returns:
             pandas.DataFrame: Sample data
         """
-        # Load wine dataset to get feature ranges
-        wine = load_wine()
-        feature_names = wine.feature_names
+        # Generate realistic seeds dataset samples
+        feature_names = [
+            'area', 'perimeter', 'compactness', 'length_of_kernel',
+            'width_of_kernel', 'asymmetry_coefficient', 'length_of_kernel_groove'
+        ]
+        
+        # Feature ranges based on Seeds dataset characteristics
+        feature_ranges = {
+            'area': (10.59, 21.18),
+            'perimeter': (12.41, 17.25), 
+            'compactness': (0.808, 0.958),
+            'length_of_kernel': (4.899, 6.675),
+            'width_of_kernel': (2.630, 3.700),
+            'asymmetry_coefficient': (0.765, 8.456),
+            'length_of_kernel_groove': (4.519, 6.550)
+        }
         
         # Generate random samples within feature ranges
         samples = []
         for _ in range(n_samples):
             sample = {}
-            for i, feature_name in enumerate(feature_names):
-                # Use actual feature statistics for realistic samples
-                feature_data = wine.data[:, i]
-                min_val = np.min(feature_data)
-                max_val = np.max(feature_data)
+            for feature_name in feature_names:
+                min_val, max_val = feature_ranges[feature_name]
                 sample[feature_name] = random.uniform(min_val, max_val)
             samples.append(sample)
         
@@ -106,7 +116,7 @@ class ModelInferenceClient:
             
             # Record request start
             self.metrics.record_request(
-                model_name="wine_classifier",
+                model_name="seeds_classifier",
                 model_version="v1.0",
                 endpoint="/invocations",
                 method="POST"
@@ -124,7 +134,7 @@ class ModelInferenceClient:
             latency = time.time() - start_time
             self.metrics.record_latency(
                 duration=latency,
-                model_name="wine_classifier",
+                model_name="seeds_classifier",
                 model_version="v1.0",
                 endpoint="/invocations"
             )
@@ -137,7 +147,7 @@ class ModelInferenceClient:
                     for pred in predictions:
                         self.metrics.record_prediction(
                             predicted_class=pred,
-                            model_name="wine_classifier"
+                            model_name="seeds_classifier"
                         )
                 
                 logger.info(f"Prediction successful: {predictions} (latency: {latency:.3f}s)")
@@ -152,7 +162,7 @@ class ModelInferenceClient:
                 # Record error
                 self.metrics.record_error(
                     error_type=f"http_{response.status_code}",
-                    model_name="wine_classifier",
+                    model_name="seeds_classifier",
                     model_version="v1.0",
                     endpoint="/invocations"
                 )
@@ -169,7 +179,7 @@ class ModelInferenceClient:
             latency = time.time() - start_time
             self.metrics.record_error(
                 error_type="connection_error",
-                model_name="wine_classifier",
+                model_name="seeds_classifier",
                 model_version="v1.0",
                 endpoint="/invocations"
             )
@@ -186,7 +196,7 @@ class ModelInferenceClient:
             latency = time.time() - start_time
             self.metrics.record_error(
                 error_type="unknown_error",
-                model_name="wine_classifier",
+                model_name="seeds_classifier",
                 model_version="v1.0",
                 endpoint="/invocations"
             )
@@ -273,8 +283,8 @@ def single_prediction_demo(client):
     result = client.make_prediction(sample_data)
     
     if result["success"]:
-        logger.info(f"✅ Prediction successful!")
-        logger.info(f"Predicted wine class: {result['predictions']}")
+        logger.info(f"Prediction successful!")
+        logger.info(f"Predicted seeds class: {result['predictions']}")
         logger.info(f"Response time: {result['latency']:.3f} seconds")
     else:
         logger.error(f"❌ Prediction failed: {result['error']}")
@@ -298,8 +308,8 @@ def batch_prediction_demo(client, batch_size=5):
     result = client.make_prediction(batch_data)
     
     if result["success"]:
-        logger.info(f"✅ Batch prediction successful!")
-        logger.info(f"Predicted wine classes: {result['predictions']}")
+        logger.info(f"Batch prediction successful!")
+        logger.info(f"Predicted seeds classes: {result['predictions']}")
         logger.info(f"Response time: {result['latency']:.3f} seconds")
         logger.info(f"Average time per sample: {result['latency']/batch_size:.3f} seconds")
     else:
@@ -330,7 +340,7 @@ def main():
         logger.warning("mlflow models serve -m runs:/<run_id>/model -h 0.0.0.0 -p 1234")
         logger.info("Continuing with mock predictions for metrics demonstration...")
     else:
-        logger.info("✅ Model server is healthy")
+        logger.info("Model server is healthy")
     
     try:
         # Single prediction demo
@@ -350,7 +360,7 @@ def main():
             requests_per_minute=20
         )
         
-        logger.info("\n✅ Inference testing completed!")
+        logger.info("\nInference testing completed!")
         logger.info("Check Prometheus metrics at: http://localhost:8000/metrics")
         
     except KeyboardInterrupt:

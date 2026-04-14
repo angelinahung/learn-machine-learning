@@ -1,4 +1,4 @@
-name: MLflow CI - Wine Classification
+name: MLflow CI - Seeds Classification
 
 # Trigger when code is pushed or PR is created
 on:
@@ -32,7 +32,7 @@ jobs:
     - name: Setup Conda
       uses: conda-incubator/setup-miniconda@v2
       with:
-        activate-environment: wine_classification_ci
+        activate-environment: seeds_classification_ci
         environment-file: MLProject/conda.yaml
         python-version: 3.10
         auto-activate-base: false
@@ -41,14 +41,14 @@ jobs:
     - name: Install MLflow
       shell: bash -l {0}
       run: |
-        conda activate wine_classification_ci
+        conda activate seeds_classification_ci
         pip install mlflow==2.19.0
         
     # Step 5: Verify environment
     - name: Verify Environment
       shell: bash -l {0}
       run: |
-        conda activate wine_classification_ci
+        conda activate seeds_classification_ci
         python --version
         mlflow --version
         pip list
@@ -57,7 +57,7 @@ jobs:
     - name: Run MLflow Training Pipeline
       shell: bash -l {0}
       run: |
-        conda activate wine_classification_ci
+        conda activate seeds_classification_ci
         cd MLProject
         echo "Starting MLflow Project Training..."
         mlflow run . --no-conda
@@ -67,7 +67,7 @@ jobs:
     - name: Verify MLflow Artifacts
       shell: bash -l {0}
       run: |
-        conda activate wine_classification_ci
+        conda activate seeds_classification_ci
         cd MLProject
         echo "MLflow Artifacts Generated:"
         ls -la mlruns/ || echo "No mlruns directory found"

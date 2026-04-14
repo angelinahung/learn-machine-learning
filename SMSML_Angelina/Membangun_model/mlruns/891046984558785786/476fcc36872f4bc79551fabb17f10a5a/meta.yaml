@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/projects/machine-learning/SMSML_Angelina/Membangun_model/mlruns/891046984558785786/476fcc36872f4bc79551fabb17f10a5a/artifacts
+end_time: 1776165904814
+entry_point_name: ''
+experiment_id: '891046984558785786'
+lifecycle_stage: active
+run_id: 476fcc36872f4bc79551fabb17f10a5a
+run_name: RandomForest_Serving_Demo
+run_uuid: 476fcc36872f4bc79551fabb17f10a5a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776165895166
+status: 3
+tags: []
+user_id: User
