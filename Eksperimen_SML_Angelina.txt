@@ -1,0 +1,15 @@
+Tautan repositori untuk Kriteria 1 - Melakukan Eksperimen dengan Dataset Pelatihan:
+
+https://github.com/angelinahung/Eksperimen_SML_Angelina
+
+Struktur repositori:
+├── seeds_dataset_raw (data mentah)
+├── preprocessing
+    └── Eksperimen_angelina.ipynb
+    └── automate_angelina.py
+    └── seeds_dataset_preprocessing (data hasil preprocessing)
+
+Catatan:
+- Repositori berisi proses pengubahan data mentah (seeds_dataset_raw) menjadi data siap pakai (seeds_dataset_preprocessing)
+- Implemented skilled feature dengan automasi preprocessing melalui automate_angelina.py
+- Eksperimen dokumentasi lengkap tersedia di Eksperimen_angelina.ipynb
